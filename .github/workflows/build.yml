@@ -1,0 +1,63 @@
+name: Build Plugin
+
+# Builds RTPQueue on every push and pull request.
+# MADE BY AUXXY
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    # The licensing site has its own workflow, so website-only changes
+    # do not trigger a plugin rebuild.
+    paths-ignore:
+      - 'license-server/**'
+      - '**.md'
+  pull_request:
+    branches: [ "main", "master" ]
+    paths-ignore:
+      - 'license-server/**'
+      - '**.md'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Compile and package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B clean package --file pom.xml
+
+      - name: Read project version
+        id: version
+        run: echo "value=$(mvn -q -B help:evaluate -Dexpression=project.version -DforceStdout)" >> "$GITHUB_OUTPUT"
+
+      # maven-shade leaves an unshaded original-*.jar behind. Excluding it means
+      # the artifact contains exactly one jar - the one to install.
+      - name: Upload jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: RTPQueue-${{ steps.version.outputs.value }}
+          path: |
+            target/*.jar
+            !target/original-*.jar
+          if-no-files-found: error
+
+      - name: Summary
+        run: |
+          {
+            echo "### RTPQueue built successfully"
+            echo ""
+            echo "Version \`${{ steps.version.outputs.value }}\` - download the jar from the **Artifacts** section of this run."
+            echo ""
+            echo "MADE BY AUXXY"
+          } >> "$GITHUB_STEP_SUMMARY"
