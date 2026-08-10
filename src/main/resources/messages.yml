@@ -1,0 +1,51 @@
+# ============================================================
+#                RTPQueue messages - MADE BY AUXXY
+#     & colour codes and &#RRGGBB hex codes are supported.
+# ============================================================
+prefix: "&8[&bRTP&fQueue&8] &7"
+
+general:
+  players-only: "&cThis command can only be used by players."
+  no-permission: "&cYou don't have permission to do that."
+  reloaded: "&aRTPQueue reloaded. &7(MADE BY AUXXY)"
+  unknown-subcommand: "&cUnknown subcommand. Try &f/rtpqueue about&c."
+  player-not-found: "&cThat player isn't online."
+  cooldown: "&cYou must wait &f%seconds%s &cbefore doing that again."
+  about:
+    - "&8&m--------------------------------"
+    - "&bRTPQueue &7v%version%"
+    - "&fMADE BY AUXXY"
+    - "&7Commands: &f/rtpqueue &7| &f/rtpq"
+    - "&8&m--------------------------------"
+
+queue:
+  joined: "&aJoined the &f%world% &aqueue. &7(%size% waiting)"
+  left: "&eYou left the queue."
+  not-in-queue: "&cYou're not in a queue."
+  already-in-queue: "&cYou're already queued for &f%world%&c."
+  world-disabled: "&cThat world isn't available for queueing."
+  world-unknown: "&cUnknown world: &f%world%"
+  update: "&7Queue &f%world%&7: &f%size% &7waiting."
+  list-header: "&7Current queues:"
+  list-entry: "&8- &f%world%&7: &f%size%"
+  list-empty: "&7No one is queued right now."
+  match-found: "&aOpponent found: &f%opponent%&a! Searching for a safe spot..."
+  searching: "&7Looking for a safe location in &f%world%&7..."
+  search-failed: "&cCouldn't find a safe spot in time. You've been returned to the queue."
+  in-match: "&cYou're already in a match."
+
+match:
+  teleporting: "&aTeleporting you to the arena..."
+  countdown-title: "&b%seconds%"
+  countdown-subtitle: "&7Get ready to fight &f%opponent%"
+  start-title: "&aFIGHT!"
+  start-subtitle: "&7Good luck"
+  grace: "&7You are invulnerable for &f%seconds%s&7."
+  won: "&aYou defeated &f%opponent%&a!"
+  lost: "&cYou were defeated by &f%opponent%&c."
+  left-arena: "&cYou went too far from the arena, so the match ended."
+  opponent-left-arena: "&aYour opponent left the arena. The match is over."
+  opponent-left: "&aYour opponent left the match - you win!"
+  timeout: "&eTime's up! The match ended in a draw."
+  returning: "&7Returning you in &f%seconds%s&7..."
+  returned: "&aYou've been returned to where you started."

@@ -1,0 +1,136 @@
+# ============================================================
+#                         RTPQueue
+#                      MADE BY AUXXY
+# ============================================================
+# Random-teleport matchmaking queue.
+# Every message supports & color codes and &#RRGGBB hex codes.
+# ============================================================
+
+# Shown in /rtpqueue about, on startup, and in the GUI footer.
+made-by: "MADE BY AUXXY"
+
+config-version: 1
+debug: false
+
+queue:
+  # How often (in ticks) the matchmaker checks queues for a pair. 20 ticks = 1s.
+  matchmaking-interval-ticks: 20
+  # Remove a player from the queue if they change worlds.
+  leave-on-world-change: true
+  # Announce queue size changes to everyone waiting in that world's queue.
+  announce-queue-updates: true
+
+cooldown:
+  # Seconds before a player may queue again after a match ends.
+  # Bypass with rtpqueue.bypass.cooldown
+  seconds: 60
+
+match:
+  # Countdown shown after both players are teleported, before PvP is enabled.
+  countdown-seconds: 5
+  # Extra seconds of damage immunity after the countdown ends.
+  grace-seconds: 2
+  # Match auto-ends in a draw after this many seconds. 0 = no timeout.
+  timeout-seconds: 300
+  # Blocks between the two players when they spawn in.
+  spread: 14
+  # Send both players back where they came from when the match ends.
+  return-to-origin: true
+  return-delay-seconds: 5
+
+  # End the match if a player gets this many blocks from where they were
+  # dropped (or changes world). Stops "you are still in a match" when someone
+  # simply walks away. Set to 0 to disable.
+  leash-blocks: 200
+  heal-on-start: true
+  feed-on-start: true
+  clear-effects-on-start: false
+  extinguish-on-start: true
+  # Console commands run when a match ends. Placeholders: %winner% %loser% %world%
+  winner-commands: []
+  # - "eco give %winner% 100"
+  loser-commands: []
+
+rtp:
+  # How many random points to test before giving up on a search.
+  max-attempts: 45
+  # Never teleport outside the world border.
+  use-world-border: true
+  # Acceptable Y range for the landing spot.
+  min-y: 45
+  max-y: 200
+  # Landing on / inside any of these is rejected.
+  unsafe-blocks:
+    - LAVA
+    - WATER
+    - FIRE
+    - SOUL_FIRE
+    - CACTUS
+    - MAGMA_BLOCK
+    - POWDER_SNOW
+    - SWEET_BERRY_BUSH
+    - CAMPFIRE
+    - SOUL_CAMPFIRE
+    - LILY_PAD
+  # Biomes to avoid (name of the biome key, case-insensitive).
+  blocked-biomes:
+    - OCEAN
+    - DEEP_OCEAN
+    - COLD_OCEAN
+    - DEEP_COLD_OCEAN
+    - FROZEN_OCEAN
+    - DEEP_FROZEN_OCEAN
+    - LUKEWARM_OCEAN
+    - DEEP_LUKEWARM_OCEAN
+    - WARM_OCEAN
+    - RIVER
+    - FROZEN_RIVER
+
+# Worlds players can queue in. Add as many as you like.
+# center: "spawn" uses the world spawn, or use "x,z" e.g. "0,0"
+worlds:
+  world:
+    enabled: true
+    display: "&aOverworld"
+    icon: GRASS_BLOCK
+    slot: 11
+    center: "spawn"
+    min-radius: 500
+    max-radius: 5000
+  world_nether:
+    enabled: false
+    display: "&cNether"
+    icon: NETHERRACK
+    slot: 13
+    center: "spawn"
+    min-radius: 200
+    max-radius: 2000
+  world_the_end:
+    enabled: false
+    display: "&5The End"
+    icon: END_STONE
+    slot: 15
+    center: "spawn"
+    min-radius: 300
+    max-radius: 3000
+
+gui:
+  # false = /rtpqueue joins the queue straight away instead of opening the menu.
+  enabled: true
+
+  # World used when the menu is disabled. Blank = first world listed under worlds:.
+  default-world: ""
+
+  queue:
+    title: "&8Queue &7| &bMADE BY AUXXY"
+    rows: 3
+    filler: BLACK_STAINED_GLASS_PANE
+    leave-slot: 22
+    leave-icon: BARRIER
+
+# ---------------------------------------------------------------------------
+# LICENSE                                                MADE BY AUXXY
+# ---------------------------------------------------------------------------
+# Paste the licence key you were given. That is all you need.
+license:
+  key: "PUT-YOUR-LICENSE-KEY-HERE"

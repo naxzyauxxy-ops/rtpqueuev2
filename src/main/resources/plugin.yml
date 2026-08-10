@@ -1,0 +1,25 @@
+name: RTPQueue
+version: '${project.version}'
+main: com.auxxy.rtpqueue.RTPQueuePlugin
+api-version: '1.21'
+authors: [ AUXXY ]
+description: 'MADE BY AUXXY - RTP matchmaking queue with safe random teleport and GUI.'
+website: https://github.com/AUXXY/RTPQueue
+
+commands:
+  rtpqueue:
+    description: 'MADE BY AUXXY - open the RTP matchmaking queue GUI.'
+    usage: /rtpqueue [join <world>|leave|list|about|reload]
+    permission: rtpqueue.queue
+    aliases: [ rtpq ]
+
+permissions:
+  rtpqueue.queue:
+    description: Join the RTP matchmaking queue.
+    default: true
+  rtpqueue.reload:
+    description: Reload RTPQueue configuration files.
+    default: op
+  rtpqueue.bypass.cooldown:
+    description: Bypass the RTP queue cooldown.
+    default: op
